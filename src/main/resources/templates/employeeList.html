@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	   <link type="text/css"rel="stylesheet" th:href="@{css/bootstrap.min.css}" /> 
+</head>
+<body>
+<script>0</script>
+<div th:replace="fragments/segments :: menu (title='All employees')"></div>
+<div class="d-flex justify-content-center mt-1"><a class="btn btn-outline-dark" href="/newemployee">Add new employee</a></div>
+<table class="table table-striped">
+<thead class="thead-dark">
+      <tr>
+      	<th>ID</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Phone</th>
+      </tr>
+      </thead>
+    <tr th:each="emp :${employees}">
+    <td th:text=${emp.empId}></td>
+    <td th:text=${emp.firstName}></td>
+    <td th:text=${emp.lastName}></td>
+    <td th:text=${emp.phone}></td>
+    <td><a th:href=@{editemp/{id}(id=${emp.empId})} class="btn btn-outline-primary">Edit Employee</a>
+    <a th:href=@{deletemp/{id}(id=${emp.empId})} class="btn btn-outline-danger">Delete Employee</a></td>
+    </tr>
+  </table>
+
+<div th:replace="fragments/segments :: footer"></div>
+
+
+
+    
+</body>
+</html>

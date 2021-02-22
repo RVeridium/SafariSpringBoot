@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	   <link type="text/css" th:rel="stylesheet"  th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+<script>0</script>
+<div th:replace="fragments/segments :: menu (title='Upcoming safaris')"></div>
+<div class="d-flex justify-content-center mt-1"><a class="btn btn-outline-dark" href="/addinstance">New Instance</a></div>
+<table class="table table-striped">
+<thead class="thead-dark">
+      <tr>
+      	<th>ID</th>
+        <th>Safari Name</th>
+        <th>Start time</th>
+        <th>End time</th>
+        <th>Price adult</th>
+        <th>Price child</th>
+        <th>Pax adult + child</th>
+        <th>Reservations (pcs)</th>
+        <th>Guide</th>
+        <th>Control</th>
+      </tr>
+      </thead>
+    <tr th:each="safari :${caltrips}">
+    <td th:text=${safari.tripInsId}>id</td>
+    <td th:text=${safari.trip.tripName}>name</td>
+    <td th:text="${#temporals.format(safari.startTime, 'dd-MM-yyyy HH:mm')}">start</td>
+    <td th:text="${#temporals.format(safari.endTime, 'dd-MM-yyyy HH:mm')}">end</td>
+    <td th:text=${safari.price_ad}>price a</td>
+    <td th:text=${safari.price_ch}>price c</td>
+    <td th:text="${safari.adultQ()}+ ' + ' + ${safari.childQ()}">pax</td>
+    <td th:text=${safari.resList.size()}>reserv</td>
+    <td th:text=${safari.employee.firstName}>guide</td>
+    <td><a th:href=@{deleteinstance/{id}(id=${safari.tripInsId})} class="btn btn-danger">Delete Instance</a>
+				<a th:href=@{editinstance/{id}(id=${safari.tripInsId})} class="btn btn-success">Edit Instance</a></td>
+    
+    </tr>
+  </table>
+
+
+By the anicients!
+
+<div th:replace="fragments/segments :: footer"></div>
+
+	
+</body>
+</html>

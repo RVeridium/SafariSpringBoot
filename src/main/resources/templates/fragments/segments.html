@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	   <link type="text/css"rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" /> 
+</head>
+<body>
+   
+    <footer class="footer bg-dark text-center text-white" th:fragment="footer">
+      <div class="container">
+        <span class="text-muted">North Safaris Oy, 2020</span>
+      </div>
+    </footer>
+    
+  <header th:fragment="menu (title)">
+	<nav class="navbar navbar-expand navbar-dark bg-dark">
+				<div class="container">
+		      <a class="navbar-brand" th:href=@{/}>North Safaris</a>
+		      <div class="collapse navbar-collapse">
+		    <ul class="navbar-nav mr-auto">
+		      <li class="nav-item"><a class="nav-link" th:href=@{/}>Upcoming safaris</a></li>
+		      <li class="nav-item"><a class="nav-link" th:href=@{/trip}>All safaris</a></li>
+		      <li class="nav-item"><a class="nav-link" th:href=@{/customer}>Customers</a></li>
+		      <li class="nav-item"><a class="nav-link" th:href=@{/employee}>Employees</a></li>
+		    </ul>
+		    </div>
+		    </div>
+    </nav>
+    
+    <div class="p-5 text-center bg-info">
+    <h4 class="mb-3" th:text="${title}">Subheading</h4>
+  </div>
+  </header>
+
+    
+    
+</body>
+</html>
