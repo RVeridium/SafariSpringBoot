@@ -8,7 +8,7 @@
    
     <footer class="footer bg-dark text-center text-white" th:fragment="footer">
       <div class="container">
-        <span class="text-muted">North Safaris Oy, 2020</span>
+        <span class="text-muted">North Safaris Oy, 2021</span>
       </div>
     </footer>
     
@@ -24,11 +24,32 @@
 		      <li class="nav-item"><a class="nav-link" th:href=@{/employee}>Employees</a></li>
 		    </ul>
 		    </div>
+		    <div class="container" sec:authorize="isAuthenticated()">
+		    <span class="navbar-text text-nowrap">Hello [[${#httpServletRequest.remoteUser}]]!</span>
+		   	</div>
+		   	<div sec:authorize="isAuthenticated()" class="d-flex text-nowrap">
+		   	<a class="btn btn-outline-light" href="/adduser">New user</a><a class="btn btn-outline-light ml-3" href="/logout">Logout</a>
+		   	
+		   	</div>
+		   	<div sec:authorize="isAnonymous()" class="d-flex text-nowrap">
+		   	<a class="btn btn-outline-light" href="/adduser">New user</a><a class="btn btn-outline-light ml-3" href="/login">Login</a>
+		   	
+		   	</div>
 		    </div>
     </nav>
     
-    <div class="p-5 text-center bg-info">
-    <h4 class="mb-3" th:text="${title}">Subheading</h4>
+    <div class="p-5 text-center bg-image"
+    style="
+      background-image: url(/images/forest.jpg);
+      height: 175px;
+      background-repeat: no-repeat; 
+      background-position-y: center;
+      background-position-x: center;
+      background-attachment: fixed;
+      background-size: cover;
+      ">
+      <h4 class="mb-3" th:text="${title}">Subheading</h4>
+    
   </div>
   </header>
 

@@ -20,6 +20,7 @@
         <th>Waiver required</th>
         <th>Contact Name</th>
         <th>Contact Phone</th>
+        <th>Control</th>
       </tr>
       </thead>
     <tr th:each="trip :${trips}">
@@ -32,12 +33,12 @@
     <td th:text=${trip.waiver}></td>
     <td th:text="${trip.contactFname} + ' '+ ${trip.contactLname}"></td>
     <td th:text=${trip.contactPhone}></td>
+    <td class="text-center"><a th:href=@{editrip/{id}(id=${trip.tripId})} class="btn btn-outline-primary">Edit</a>
+    <a th:href=@{deletesaf/{id}(id=${trip.tripId})} class="btn btn-outline-danger">Delete</a></td>
 
     </tr>
   </table>
 
-By the anicients!
-Tänne create new safari nappula
 <div th:replace="fragments/segments :: footer"></div>
 
 

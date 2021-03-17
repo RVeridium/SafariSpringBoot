@@ -1,13 +1,16 @@
 package com.example.demo.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.domain.Customer;
 import com.example.demo.domain.Employee;
+import com.example.demo.domain.Trip;
 import com.example.demo.domain.repos.CustomerRepo;
 import com.example.demo.domain.repos.EmployeeRepo;
 import com.example.demo.domain.repos.ReservationRepo;
@@ -51,21 +54,39 @@ public class SafariController {
 		return "tripList"; 
 	}
 	
+	@GetMapping(value="/newsafari")
+	public String newTrip(Model model) {
+		model.addAttribute("safari", new Trip()); 
+		return "newTrip"; 
+	}
+	
+	@PostMapping(value="/newsaf")
+	public String makeSafari(Trip trip, Model mode) {
+		tripRepo.save(trip); 
+		return "redirect:/trip"; 
+	}
+	@GetMapping(value="editrip/{id}")
+	public String editTrip(@PathVariable("id") Long tripId, Model model) {
+		model.addAttribute("safari", tripRepo.findById(tripId)); 
+		return "editTrip"; 
+	}
+	
+	
 	@GetMapping(value="/newemployee")
 	public String newemp(Model model) {
 		model.addAttribute("emp", new Employee()); 
 		return "newemp"; 
 	}
-	@PostMapping(value="saveemp")
+	@PostMapping(value={"saveemp","editemp/saveemp"})
 	public String addemp(Employee emp, Model model) {
 		empRepo.save(emp); 
-		return "redirect:employeeList"; 
+		return "redirect:/employee"; 
 	}
 	
 	@GetMapping(value="deletemp/{id}")
 	public String deletEmp(@PathVariable("id") Long empId, Model model) {
     	empRepo.deleteById(empId);
-        return "redirect:../employeeList";
+        return "redirect:../employee";
     }
 	
 	@GetMapping(value="editemp/{id}")
@@ -74,8 +95,26 @@ public class SafariController {
 		return "editemp"; 
 	}
 	
+	@GetMapping(value="newcust")
+	public String newCustomer(Model model) {
+		model.addAttribute("cust", new Customer(false)); 
+		return "newcustomer"; 
+	}
 	
+	@PostMapping(value="savecust")
+	public String saveCust(Customer cust, Model model) {
+		custRepo.save(cust); 
+		return "redirect:/customer"; 
+	}
 	
+	/*
+	@PostMapping(value="/login")
+	public String logIn() {
+		return "login"; 
+	}
+	
+	//@PreAuthorize("hasAuthority('ADMIN')")
+	*/
 	
 	
 	

@@ -6,7 +6,9 @@ import com.example.demo.domain.TripInstance;
 
 public interface TripInstanceRepo extends CrudRepository<TripInstance, Long>{
 	
-	public TripInstance getByEmployeeLastName(String lastName); 
+	public TripInstance getByEmployeeLastName(String lastName);
+	
+	
 	
 
 }

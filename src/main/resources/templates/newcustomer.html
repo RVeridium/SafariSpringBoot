@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	   <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" /> 
+	   
+</head>
+<body>
+<script>0</script>
+
+<div th:replace="fragments/segments :: menu (title='All customers')"></div>
+
+<div class="container">
+<div class="row">
+<div class="col-sm"></div>
+  <div class="col-sm">
+  <form action="#" th:object=${cust} th:action=@{savecust} method="post">
+  <div class="form">
+    <div class="form-group">
+    	<label for="partyName" class="control-label" >Party Name</label>
+		<input class="form-control" type="text" id="partyName" th:field="*{partyName}"/>
+    </div>
+	<div>
+	<label for="walk-in">Walk-In</label>
+	<input type="checkbox" th:field="*{walkIn}"/>
+  </div>
+  </div>
+  <div style="clear: both; display: block; height: 10px;"></div>
+   <input type="submit" value="Save" class="btn btn-success mx-auto d-block"/>
+</form>
+</div>
+<div class="col-sm"></div>
+</div>
+  <div style="clear: both; display: block; height: 10px;"></div>
+</div>
+
+
+
+<div th:replace="fragments/segments :: footer"></div>
+
+
+
+    
+</body>
+</html>

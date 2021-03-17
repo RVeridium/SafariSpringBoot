@@ -28,6 +28,10 @@ public class Customer {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Customer(Boolean walkIn) {
+		this.walkIn = walkIn; 
+	}
 
 	public Customer(String partyName, Boolean walkIn) {
 		super();

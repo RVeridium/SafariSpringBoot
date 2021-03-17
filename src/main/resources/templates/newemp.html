@@ -2,17 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	   <link type="text/css"rel="stylesheet" th:href="@{css/bootstrap.min.css}" /> 
+	   <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" /> 
 </head>
 <body>
 <script>0</script>
 <div th:replace="fragments/segments :: menu (title='New employee')"></div>
-<div class="d-flex justify-content-center mt-1"><a class="btn btn-outline-dark" href="/newemployee">Add new employee</a></div>
 
-<div class="container col-md-10 col-md-offset-2">
+<div class="container-fluid h-100">
   
   <form action="#" th:object=${emp} th:action=@{saveemp} method="post">
-  <div class="row">
+  <div class="row justify-content-center align-items-center">
     <div class="form-group col-md-2">
     	<label for="firstName" class="control-label" >First name</label>
 		<input class="form-control" type="text" id="firstName" th:field="*{firstName}"/>
@@ -27,7 +26,8 @@
 	</div>
   </div>
   <div style="clear: both; display: block; height: 10px;"></div>
-  <input type="submit" value="Save" class="btn btn-success"/>
+  <input type="submit" value="Save" class="btn btn-success mx-auto d-block"/>
+   <div style="clear: both; display: block; height: 10px;"></div>
   
 </form>
 </div>
