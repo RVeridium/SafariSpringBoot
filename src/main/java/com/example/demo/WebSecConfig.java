@@ -28,7 +28,7 @@ public class WebSecConfig extends WebSecurityConfigurerAdapter {
 			.and()
 		.formLogin()
 			//.loginPage("").permitAll()
-			.defaultSuccessUrl("/customer", true)
+			.defaultSuccessUrl("/index", true)
 			.permitAll()
 			.and()
 		.logout()
@@ -45,7 +45,7 @@ public class WebSecConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 	    web
 	            .ignoring()
-	            .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**");
+	            .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
 	}
 	
 

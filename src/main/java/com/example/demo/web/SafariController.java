@@ -13,7 +13,6 @@ import com.example.demo.domain.Employee;
 import com.example.demo.domain.Trip;
 import com.example.demo.domain.repos.CustomerRepo;
 import com.example.demo.domain.repos.EmployeeRepo;
-import com.example.demo.domain.repos.ReservationRepo;
 import com.example.demo.domain.repos.TripInstanceRepo;
 import com.example.demo.domain.repos.TripRepo;
 
@@ -24,8 +23,6 @@ public class SafariController {
 	@Autowired
 	private EmployeeRepo empRepo; 
 	@Autowired
-	private ReservationRepo resRepo; 
-	@Autowired
 	private TripRepo tripRepo; 
 	@Autowired
 	private TripInstanceRepo tripInsRepo; 
@@ -35,6 +32,13 @@ public class SafariController {
 		model.addAttribute("caltrips", tripInsRepo.findAll());
 		return "index"; 
 	}
+	
+	@GetMapping(value="deleteinstance/{id}")
+	public String delInst(@PathVariable("id") Long instId, Model model) {
+		tripInsRepo.deleteById(instId);
+		return "redirect:/index"; 
+	}
+	
 	
 	@GetMapping(value="/customer")
 	public String customerPage(Model model) {
@@ -70,6 +74,12 @@ public class SafariController {
 		model.addAttribute("safari", tripRepo.findById(tripId)); 
 		return "editTrip"; 
 	}
+	@GetMapping(value="deletesaf/{id}")
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public String deleteSafari(@PathVariable("id") Long tripId, Model model) {
+		tripRepo.deleteById(tripId);
+		return "redirect:/trip";
+	}
 	
 	
 	@GetMapping(value="/newemployee")
@@ -84,6 +94,7 @@ public class SafariController {
 	}
 	
 	@GetMapping(value="deletemp/{id}")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deletEmp(@PathVariable("id") Long empId, Model model) {
     	empRepo.deleteById(empId);
         return "redirect:../employee";
@@ -106,15 +117,6 @@ public class SafariController {
 		custRepo.save(cust); 
 		return "redirect:/customer"; 
 	}
-	
-	/*
-	@PostMapping(value="/login")
-	public String logIn() {
-		return "login"; 
-	}
-	
-	//@PreAuthorize("hasAuthority('ADMIN')")
-	*/
 	
 	
 	

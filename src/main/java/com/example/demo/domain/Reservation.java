@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Reservation {
 	//own id
@@ -18,6 +20,7 @@ public class Reservation {
 	@JoinColumn(name = "cusId")
 	private Customer customer;
 	//tripInstance, single
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "tripInsId")
 	private TripInstance tripInstance; 
@@ -79,8 +82,7 @@ public class Reservation {
 
 	@Override
 	public String toString() {
-		return "Reservation [resId=" + resId + ", customer=" + customer + ", tripInstance="
-				+ tripInstance + ", adQty=" + adQty + ", chQty=" + chQty + "]";
+		return "Reservation [resId=" + resId + ", customer=" + customer + ", adQty=" + adQty + ", chQty=" + chQty + "]";
 	} 
 	
 	

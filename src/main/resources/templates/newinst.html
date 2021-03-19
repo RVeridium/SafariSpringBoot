@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" th:rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<script>
+		0
+	</script>
+	<div th:replace="fragments/segments :: menu (title='New instance')"></div>
+	<div class="container">
+
+		<form th:object="${instance}" th:action="@{/newinst}" action="#"
+			method="post">
+			<div class="row mb-3 mt-3">
+				<label for="safari" class="col-sm-2 col-form-label text-nowrap offset-sm-3">Safari
+					Name</label>
+				<div class="col-md-4">
+					<select id="safari" th:field="*{trip}"
+						class="form-control col-md-3">
+						<option th:each="trip:${safaris}" th:value="${trip.tripId}"
+							th:text="${trip.tripName}"></option>
+					</select>
+				</div>
+			</div>
+			<div class="row mb-3 mt-3">
+				<label for="guide" class="col-sm-2 col-form-label offset-sm-3">Guide</label>
+				<div class="col-md-4">
+					<select id="guide" th:field="*{employee}"
+						class="form-control col-md-3">
+						<option th:each="emp:${emps}" th:value="${emp.empId}"
+							th:text="${emp.firstName}+ ' ' + ${emp.lastName}"></option>
+					</select>
+				</div>
+			</div>
+			<div class="row mb-3 mt-3">
+				<label for="start" class="col-sm-2 col-form-label offset-sm-3">Start
+					time</label>
+				<div class="col-md-4">
+					<input id="start" class="form-control" type="datetime-local"
+						th:field="*{startTime}" placeholder="DD.MM.YYYY HH.MM" />
+				</div>
+			</div>
+			<div class="row mb-3 mt-3">
+				<label for="end" class="col-sm-2 col-form-label offset-sm-3">End
+					time</label>
+				<div class="col-md-4">
+					<input id="end" class="form-control" th:field="*{endTime}"
+						type="datetime-local" placeholder="DD.MM.YYYY HH.MM" />
+				</div>
+			</div>
+			<div class="row offset-sm-4 mb-3">
+				<div class="form-group col-md-3">
+					<label for="adp" class="col-sm-2 col-form-label text-nowrap">Price
+						(adult)</label> <input type="number" step="0.01" th:field="*{price_ad}"
+						class="form-control" id="adp">
+				</div>
+				<div class="form-group col-md-3">
+					<label for="adc" class="col-sm-2 col-form-label text-nowrap">Price
+						(child)</label> <input type="number" step="0.01" th:field="*{price_ch}"
+						class="form-control" id="adc">
+				</div>
+			</div>
+
+
+
+			<input type="submit" value="Save"
+				class="btn btn-success mx-auto d-block mb-2 mt-2" />
+
+		</form>
+	</div>
+
+	<div th:replace="fragments/segments :: footer"></div>
+
+
+</body>
+</html>

@@ -1,47 +1,61 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	   <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" /> 
-	   
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet"
+	th:href="@{css/bootstrap.min.css}" />
+
 </head>
 <body>
-<script>0</script>
+	<script>
+		0
+	</script>
 
-<div th:replace="fragments/segments :: menu (title='Create new user')"></div>
-<div class="container">
-<form th:object="${newUser}" th:action="@{/saveNewUser}" action="#" method="post">
-<div class="row mb-3">
-    <label for="username1" class="col-sm-2 col-form-label">Username</label>
-    <div class="col-sm-10">
-      <input type="text" th:field="*{username}" class="form-control" id="username1">
-      <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</p>	
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label for="inputPassword1" class="col-sm-2 col-form-label">Password</label>
-    <div class="col-sm-10">
-      <input type="password" th:field="*{password}" class="form-control" id="inputPassword1">
-      <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</p>	
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label for="inputPassword3" class="col-sm-2 col-form-label">Confirm password</label>
-    <div class="col-sm-10">
-      <input type="password" th:field="*{passwordCheck}" class="form-control" id="inputPassword3">
-      <p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">Password Match Error</p>	
-    </div>
-  </div>
-  <input type="submit" value="Save" class="btn btn-success mx-auto d-block"/>
+	<div th:replace="fragments/segments :: menu (title='Create new user')"></div>
+	<div class="container">
+		<form th:object="${newUser}" th:action="@{/saveNewUser}" action="#"
+			method="post">
+			<div class="row mb-3 mt-3">
+				<label for="username1" class="col-sm-2 col-form-label offset-sm-3">Username</label>
+				<div class="col-sm-4">
+					<input type="text" th:field="*{username}" class="form-control"
+						id="username1">
+					<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username
+						Error</p>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="inputPassword1"
+					class="col-sm-2 col-form-label offset-sm-3">Password</label>
+				<div class="col-sm-4">
+					<input type="password" th:field="*{password}" class="form-control"
+						id="inputPassword1">
+					<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password
+						Error</p>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="inputPassword3"
+					class="col-sm-2 col-form-label offset-sm-3">Confirm
+					password</label>
+				<div class="col-sm-4">
+					<input type="password" th:field="*{passwordCheck}"
+						class="form-control" id="inputPassword3">
+					<p th:if="${#fields.hasErrors('passwordCheck')}"
+						th:errors="*{passwordCheck}">Password Match Error</p>
+				</div>
+			</div>
+			<input type="submit" value="Save"
+				class="btn btn-success mx-auto d-block mb-3" />
 
-</form>
-</div>
+		</form>
+	</div>
 
 
-<div th:replace="fragments/segments :: footer"></div>
+	<div th:replace="fragments/segments :: footer"></div>
 
 
 
-    
+
 </body>
 </html>

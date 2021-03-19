@@ -37,7 +37,6 @@ public class Customer {
 		super();
 		this.partyName = partyName;
 		this.walkIn = walkIn;
-		this.resList = new ArrayList<Reservation>(); 
 		
 	}
 
@@ -75,8 +74,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [custId=" + custId + ", partyName=" + partyName + ", walkIn=" + walkIn + ", resList=" + resList
-				+ "]";
+		return "Customer [custId=" + custId + ", partyName=" + partyName + ", walkIn=" + walkIn + "]";
 	}
 	
 	

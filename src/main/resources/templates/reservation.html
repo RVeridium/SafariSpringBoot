@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" th:rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<script>
+		0
+	</script>
+	<div
+		th:replace="fragments/segments :: menu (title='Instance reservations')"></div>
+	<div class="d-flex justify-content-center mt-1">
+		<a class="btn btn-outline-dark" href="/newres">New Reservation</a>
+	</div>
+	<div class="container">
+		<table class="table table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>ID</th>
+					<th>Safari Name</th>
+					<th>Start time</th>
+					<th>End time</th>
+					<th>Price adult</th>
+					<th>Price child</th>
+					<th>Pax adult + child</th>
+					<th>Reservations (pcs)</th>
+					<th>Guide</th>
+				</tr>
+			</thead>
+			<tr>
+				<td th:text=${instance.tripInsId}>id</td>
+				<td th:text=${instance.trip.tripName}>name</td>
+				<td
+					th:text="${#temporals.format(instance.startTime, 'dd-MM-yyyy HH:mm')}">start</td>
+				<td
+					th:text="${#temporals.format(instance.endTime, 'dd-MM-yyyy HH:mm')}">end</td>
+				<td th:text=${instance.price_ad}>price a</td>
+				<td th:text=${instance.price_ch}>price c</td>
+				<td th:text="${instance.adultQ()}+ ' + ' + ${instance.childQ()}">pax</td>
+				<td th:text=${instance.resList.size()}>reserv</td>
+				<td th:text=${instance.employee.firstName}>guide</td>
+
+			</tr>
+		</table>
+		<div class="col-md-6 offset-md-3">
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>ID</th>
+						<th>Customer</th>
+						<th>Pax adult</th>
+						<th>Pax child</th>
+						<th>Control</th>
+					</tr>
+				</thead>
+				<tr th:each="res: ${resList}">
+					<td th:text=${res.resId}>id</td>
+					<td th:text=${res.customer.partyName}>partyname</td>
+					<td th:text=${res.adQty}>adqty</td>
+					<td th:text=${res.chQty}>chqty</td>
+					<td><a th:href=@{deleteres/{id}(id=${res.resId})}
+						class="btn btn-danger">Delete</a> <a
+						th:href=@{editres/{id}(id=${res.resId})} class="btn btn-success">Edit</a>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+
+
+
+	<div th:replace="fragments/segments :: footer"></div>
+
+
+</body>
+</html>

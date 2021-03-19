@@ -53,8 +53,9 @@ public class TripInstance {
 		this.price_ch = price_ch;
 		this.startTime = startTime;
 		this.endTime = endTime;
-		this.resList = new ArrayList<Reservation>(); 
 	}
+	
+	
 
 	public Long getTripInsId() {
 		return tripInsId;
@@ -138,8 +139,7 @@ public class TripInstance {
 
 	@Override
 	public String toString() {
-		return "TripInstance [tripInsId=" + tripInsId + ", resList=" + resList + ", trip=" + trip + ", employee="
-				+ employee + ", price_ad=" + price_ad + ", price_ch=" + price_ch + ", startTime=" + startTime
+		return "TripInstance [tripInsId=" + tripInsId + ", trip=" + trip + ", price_ad=" + price_ad + ", price_ch=" + price_ch + ", startTime=" + startTime
 				+ ", endTime=" + endTime + "]";
 	} 
 	

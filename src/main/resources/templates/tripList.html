@@ -1,47 +1,59 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	   <link type="text/css"rel="stylesheet" th:href="@{css/bootstrap.min.css}" /> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet"
+	th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
-<script>0</script>
-<div th:replace="fragments/segments :: menu (title='All safaris')"></div>
-<div class="d-flex justify-content-center mt-1"><a class="btn btn-outline-dark" href="/newsafari">Create new Safari</a></div>
-<table class="table table-striped">
-<thead class="thead-dark">
-      <tr>
-      	<th>Safari Name</th>
-        <th>Target</th>
-        <th>Address</th>
-        <th>Price Adult</th>
-        <th>Price Child</th>
-        <th>Description</th>
-        <th>Waiver required</th>
-        <th>Contact Name</th>
-        <th>Contact Phone</th>
-        <th>Control</th>
-      </tr>
-      </thead>
-    <tr th:each="trip :${trips}">
-    <td th:text=${trip.tripName}></td>
-    <td th:text=${trip.target}></td>
-    <td th:text=${trip.address}></td>
-    <td th:text=${trip.list_price_ad}></td>
-    <td th:text=${trip.list_price_ch}></td>
-    <td th:text=${trip.description}></td>
-    <td th:text=${trip.waiver}></td>
-    <td th:text="${trip.contactFname} + ' '+ ${trip.contactLname}"></td>
-    <td th:text=${trip.contactPhone}></td>
-    <td class="text-center"><a th:href=@{editrip/{id}(id=${trip.tripId})} class="btn btn-outline-primary">Edit</a>
-    <a th:href=@{deletesaf/{id}(id=${trip.tripId})} class="btn btn-outline-danger">Delete</a></td>
+	<script>
+		0
+	</script>
+	<div th:replace="fragments/segments :: menu (title='All safaris')"></div>
+	<div class="d-flex justify-content-center mt-1">
+		<a class="btn btn-outline-dark" href="/newsafari">Create new
+			Safari</a>
+	</div>
+	<div class="container">
+		<table class="table table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Safari Name</th>
+					<th>Target</th>
+					<th>Address</th>
+					<th>Price Adult</th>
+					<th>Price Child</th>
+					<th>Description</th>
+					<th>Waiver required</th>
+					<th>Contact Name</th>
+					<th>Contact Phone</th>
+					<th>Control</th>
+				</tr>
+			</thead>
+			<tr th:each="trip :${trips}">
+				<td th:text=${trip.tripName}></td>
+				<td th:text=${trip.target}></td>
+				<td th:text=${trip.address}></td>
+				<td th:text=${trip.list_price_ad}></td>
+				<td th:text=${trip.list_price_ch}></td>
+				<td th:text=${trip.description}></td>
+				<td th:text=${trip.waiver}></td>
+				<td th:text="${trip.contactFname} + ' '+ ${trip.contactLname}"></td>
+				<td th:text=${trip.contactPhone}></td>
+				<td class="text-center"><a
+					th:href=@{editrip/{id}(id=${trip.tripId})}
+					class="btn btn-outline-primary">Edit</a> <a
+					sec:authorize="hasAuthority('ADMIN')"
+					th:href=@{deletesaf/{id}(id=${trip.tripId})}
+					class="btn btn-outline-danger">Delete</a></td>
 
-    </tr>
-  </table>
+			</tr>
+		</table>
+	</div>
 
-<div th:replace="fragments/segments :: footer"></div>
+	<div th:replace="fragments/segments :: footer"></div>
 
 
-    
+
 </body>
 </html>

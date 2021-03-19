@@ -1,46 +1,54 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	   <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" /> 
-	   <style type="text/css">
-		.table {
-		    margin: 0 auto;
-		    width: 50%;
-		}
-		</style>
-	   
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet"
+	th:href="@{css/bootstrap.min.css}" />
+<style type="text/css">
+.table {
+	margin: 0 auto;
+	width: 50%;
+}
+</style>
+
 </head>
 <body>
-<script>0</script>
+	<script>
+		0
+	</script>
 
-<div th:replace="fragments/segments :: menu (title='All customers')"></div>
-<div class="d-flex justify-content-center mt-1"><a class="btn btn-outline-dark" href="/newcust">Add new customer</a></div>
-<div class="container">
-<table class="table table-striped">
-<thead class="thead-dark">
-      <tr>
-      	<th>ID</th>
-        <th>Party Name</th>
-        <th>Walk-in</th>
-        <th class="text-center">Control</th>
-      </tr>
-      </thead>
-    <tr th:each="customer :${customers}">
-    <td th:text=${customer.custId}></td>
-    <td th:text=${customer.partyName}></td>
-    <td th:text=${customer.walkIn}></td>
-    <td class="text-center"><a th:href=@{editcust/{id}(id=${customer.custId})} class="btn btn-outline-primary">Edit Customer</a>
-    <a th:href=@{deletecust/{id}(id=${customer.custId})} class="btn btn-outline-danger">Delete Customer</a></td>
-    </tr>
-  </table>
- </div>
- <div style="clear: both; display: block; height: 10px;"></div>	
+	<div th:replace="fragments/segments :: menu (title='All customers')"></div>
+	<div class="d-flex justify-content-center mt-1">
+		<a class="btn btn-outline-dark" href="/newcust">Add new customer</a>
+	</div>
+	<div class="container">
+		<table class="table table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>ID</th>
+					<th>Party Name</th>
+					<th>Walk-in</th>
+					<th class="text-center">Control</th>
+				</tr>
+			</thead>
+			<tr th:each="customer :${customers}">
+				<td th:text=${customer.custId}></td>
+				<td th:text=${customer.partyName}></td>
+				<td th:text=${customer.walkIn}></td>
+				<td class="text-center"><a
+					th:href=@{editcust/{id}(id=${customer.custId})}
+					class="btn btn-outline-primary">Edit Customer</a> <a
+					th:href=@{deletecust/{id}(id=${customer.custId})}
+					class="btn btn-outline-danger">Delete Customer</a></td>
+			</tr>
+		</table>
+	</div>
+	<div style="clear: both; display: block; height: 10px;"></div>
 
-<div th:replace="fragments/segments :: footer"></div>
+	<div th:replace="fragments/segments :: footer"></div>
 
 
 
-    
+
 </body>
 </html>
